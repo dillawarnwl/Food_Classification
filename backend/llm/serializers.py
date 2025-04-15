@@ -4,4 +4,5 @@ from llm.models import FoodImage
 class FoodImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = FoodImage
-        fields = ['image', 'uploaded_at']
+        fields = ['country', 'image', 'uploaded_at']
+        read_only_fields = ['country']

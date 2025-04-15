@@ -14,6 +14,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+node_modules/
 
 # Django specific
 *.mo
@@ -67,4 +68,5 @@ coverage.xml
 *.cproject
 *.csettings
 *.properties
-*.json
+*.expo
+android
