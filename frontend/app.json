@@ -3,6 +3,7 @@
     "name": "Food Classification",
     "slug": "food-classification",
     "version": "1.0.0",
+    "newArchEnabled": true,
     "scheme": "foodclassification",
     "orientation": "portrait",
     "userInterfaceStyle": "light",

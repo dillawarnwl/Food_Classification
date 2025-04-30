@@ -8,10 +8,11 @@ import {
   ActivityIndicator,
   FlatList,
   Dimensions,
+  Modal,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-const API_URL = 'http://192.168.241.210:8000/llm/sample-images/';
+const API_URL = 'http://192.168.100.6:8000/classifier/sample-images/';
 const screenWidth = Dimensions.get('window').width;
 const imageSize = (screenWidth - 40) / 2 - 10;
 
@@ -20,6 +21,7 @@ const FoodAppUI = () => {
   const [foodData, setFoodData] = useState({});
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState(null);
+  const [showIntroModal, setShowIntroModal] = useState(true); // NEW: intro modal state
 
   useEffect(() => {
     fetchFoodData();
@@ -42,13 +44,13 @@ const FoodAppUI = () => {
       key={index}
       onPress={() =>
         navigation.navigate('Camera', {
-          image: `http://192.168.241.210:8000${item.image}`,
+          image: `http://192.168.100.6:8000${item.image}`,
         })
       }
       style={styles.imageWrapper}
     >
       <Image
-        source={{ uri: `http://192.168.241.210:8000${item.image}` }}
+        source={{ uri: `http://192.168.100.6:8000${item.image}` }}
         style={styles.foodImage}
       />
     </TouchableOpacity>
@@ -109,6 +111,30 @@ const FoodAppUI = () => {
 
   return (
     <View style={styles.container}>
+      {/* Intro Modal */}
+      <Modal
+        visible={showIntroModal}
+        transparent
+        animationType="fade"
+      >
+        <View style={styles.modalOverlay}>
+          <View style={styles.introModalContainer}>
+            <Text style={styles.introModalTitle}>🖼️ Select an Image for Classification</Text>
+            <Text style={styles.introModalSubtitle}>
+              Choose a sample image to test the classifier.
+            </Text>
+
+            <TouchableOpacity
+              style={styles.gotItButton}
+              onPress={() => setShowIntroModal(false)}
+            >
+              <Text style={styles.gotItButtonText}>Got it!</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+
+      {/* Main Content */}
       {loading ? (
         <ActivityIndicator size="large" color="#4C8CFF" style={{ marginTop: 30 }} />
       ) : (
@@ -184,6 +210,43 @@ const styles = StyleSheet.create({
     width: imageSize,
     height: imageSize,
     borderRadius: 12,
+  },
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0,0,0,0.6)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  introModalContainer: {
+    backgroundColor: '#1A2236',
+    padding: 25,
+    borderRadius: 15,
+    width: '80%',
+    alignItems: 'center',
+  },
+  introModalTitle: {
+    fontSize: 20,
+    color: '#fff',
+    fontWeight: 'bold',
+    marginBottom: 10,
+    textAlign: 'center',
+  },
+  introModalSubtitle: {
+    fontSize: 16,
+    color: '#ccc',
+    marginBottom: 20,
+    textAlign: 'center',
+  },
+  gotItButton: {
+    backgroundColor: '#4C8CFF',
+    paddingVertical: 10,
+    paddingHorizontal: 25,
+    borderRadius: 25,
+  },
+  gotItButtonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

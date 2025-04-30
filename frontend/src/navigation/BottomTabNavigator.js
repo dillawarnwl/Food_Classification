@@ -7,7 +7,7 @@ import { getItem } from '../context/Storage';
 import HomeScreen from '../screens/Home/HomeScreen';
 import ExploreScreen from '../screens/Globe/GlobeScreen';
 import CameraScreen from '../screens/Camera/CameraScreen';
-import ProfileScreen from '../screens/Authentication/ProfileScreen';
+// import ProfileScreen from '../screens/Authentication/ProfileScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -65,7 +65,7 @@ const BottomTabNavigator = () => {
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Explore" component={ExploreScreen} />
       <Tab.Screen name="Camera" component={CameraScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+      {/* <Tab.Screen name="Profile" component={ProfileScreen} /> */}
     </Tab.Navigator>
   );
 };

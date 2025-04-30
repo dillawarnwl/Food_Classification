@@ -16,7 +16,7 @@ import Icon from 'react-native-vector-icons/Ionicons';
 import { useRoute } from '@react-navigation/native';
 import mime from 'mime';
 
-const API_URL = 'http://192.168.241.210:8000/llm/classify/';
+const API_URL = 'http://192.168.100.6:8000/classifier/classify/';
 
 const UploadScreen = () => {
   const [image, setImage] = useState(null);
@@ -48,17 +48,17 @@ const UploadScreen = () => {
     if (Platform.OS === 'android') {
       uri = 'file:///' + uri.split('file:/').join('');
     }
-  
+
     const fileName = asset.fileName || uri.split('/').pop();
     const type = mime.getType(uri) || 'image/jpeg';
-  
+
     return {
       uri,
       fileName,
       type,
     };
   };
-  
+
 
   const pickImage = async () => {
     const result = await ImagePicker.launchImageLibraryAsync({
@@ -186,35 +186,26 @@ const UploadScreen = () => {
               {result ? (
                 <>
                   <Text style={styles.predictedLabel}>
-                    Main Prediction:{' '}
+                    Predicted Class:{' '}
                     <Text style={{ color: '#FACC15' }}>
                       {result.predicted_class}
                     </Text>
                   </Text>
 
-                  <Text style={styles.resultHeader}>Top Predictions:</Text>
-                  {result.top_predictions?.map((item, index) => (
-                    <View key={index} style={styles.probabilityRow}>
-                      <Text style={styles.countryLabel}>{item.country}</Text>
-                      <View style={styles.probabilityBarContainer}>
-                        <View
-                          style={[
-                            styles.probabilityBar,
-                            {
-                              width: `${(item.probability * 100).toFixed(0)}%`,
-                            },
-                          ]}
-                        />
-                      </View>
-                      <Text style={styles.percentageLabel}>
-                        {(item.probability * 100).toFixed(1)}%
-                      </Text>
-                    </View>
-                  ))}
-
-                  <Text style={styles.uncertaintyText}>
-                    Uncertainty: {(result.uncertainty / Math.log(5) * 100).toFixed(1)}%
+                  <Text style={{ textAlign: 'center', color: '#00DC82', marginTop: 8, fontSize: 16 }}>
+                    Confidence: {(result.confidence * 100).toFixed(1)}%
                   </Text>
+
+                  {/* Add this section to display the heatmap image */}
+                  {result.heatmap_image && (
+                    <View style={{ marginVertical: 20, alignItems: 'center' }}>
+                      <Text style={{ color: '#fff', marginBottom: 10 }}>Heatmap:</Text>
+                      <Image
+                        source={{ uri: `data:image/jpeg;base64,${result.heatmap_image}` }}
+                        style={{ width: 300, height: 300, resizeMode: 'contain' }}
+                      />
+                    </View>
+                  )}
                 </>
               ) : (
                 <Text style={{ color: '#fff', textAlign: 'center' }}>
@@ -235,11 +226,11 @@ const UploadScreen = () => {
           </View>
         </View>
       </Modal>
+
     </View>
   );
 };
 
-// 🔽 Styles remain unchanged
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#0B1120',

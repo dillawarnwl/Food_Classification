@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import axios from 'axios';
 
-const API_BASE_URL = "http://192.168.241.210:8000";
+const API_BASE_URL = "http://192.168.100.6:8000";
 const SIGNUP_URL = `${API_BASE_URL}/auth/registration/`;
 
 const SignUpScreen = ({ navigation }) => {

@@ -3,7 +3,7 @@ import axios from "axios";
 import { saveToken, getToken, deleteToken } from "./Storage";
 import { removeItem } from "./Storage";
 
-const API_BASE_URL = "http://192.168.241.210:8000";
+const API_BASE_URL = "http://192.168.100.6:8000";
 const LOGIN_URL = `${API_BASE_URL}/auth/login/`;
 const LOGOUT_URL = `${API_BASE_URL}/auth/logout/`;
 const PROFILE_URL = `${API_BASE_URL}/accounts/profile/`;

@@ -11,7 +11,7 @@ const LandingPage = ({ navigation }) => {
         backgroundColor="#070D23" // Match the hero section background
         barStyle="light-content" // Light icons for dark background
       />
-      
+
       <ScrollView style={styles.container}>
         {/* Hero Section */}
         <View style={styles.heroSection}>
@@ -29,7 +29,10 @@ const LandingPage = ({ navigation }) => {
         <View style={styles.featuresSection}>
           <Text style={styles.sectionTitle}>App Features</Text>
 
-          <View style={styles.featureItem}>
+          <TouchableOpacity
+            style={styles.featureItem}
+            onPress={() => navigation.navigate('Camera')}
+          >
             <Image
               source={require('../../../assets/instant-clsfy.png')}
               style={styles.featureImage}
@@ -40,9 +43,12 @@ const LandingPage = ({ navigation }) => {
                 Upload or snap a photo and get instant classification results.
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.featureItem}>
+          <TouchableOpacity
+            style={styles.featureItem}
+            onPress={() => navigation.navigate('Explore')}
+          >
             <Image
               source={require('../../../assets/try-sample.png')}
               style={styles.featureImage}
@@ -53,9 +59,12 @@ const LandingPage = ({ navigation }) => {
                 Use provided sample images to test classification performance.
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
 
-          <View style={styles.featureItem}>
+          <TouchableOpacity
+            style={styles.featureItem}
+            onPress={() => navigation.navigate('Explore')}
+          >
             <Image
               source={require('../../../assets/simple-fast.png')}
               style={styles.featureImage}
@@ -63,10 +72,10 @@ const LandingPage = ({ navigation }) => {
             <View style={styles.featureTextContainer}>
               <Text style={styles.featureTitle}>Simple & Fast</Text>
               <Text style={styles.featureDescription}>
-                No extra info—just upload and classify. That's it.
+                No extra info—just select and classify. That's it.
               </Text>
             </View>
-          </View>
+          </TouchableOpacity>
         </View>
 
         {/* Call to Action */}
