@@ -1,0 +1,28 @@
+{
+  "expo": {
+    "name": "Food Classification",
+    "slug": "food_classification",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/misc/icon.png",
+    "userInterfaceStyle": "light",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/misc/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      }
+    },
+    "web": {
+      "favicon": "./assets/misc/favicon.png"
+    }
+  }
+}

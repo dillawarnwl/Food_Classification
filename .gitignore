@@ -1,0 +1,73 @@
+# === Django backend ===
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+db.sqlite3
+*.sqlite3
+*.log
+*.pot
+*.mo
+*.egg-info/
+*.eggs/
+media/
+.env
+env/
+.env.*
+*.bak
+
+# IDE/editor
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Test/coverage
+.coverage
+.pytest_cache/
+.tox/
+*.coverage
+*.cover
+coverage.xml
+nosetests.xml
+
+# === React Native frontend ===
+node_modules/
+npm-debug.*
+yarn-debug.*
+yarn-error.*
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+
+# Native build artifacts
+android/app/build/
+ios/build/
+*.keystore
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+
+# Metro
+.metro-health-check*
+
+# macOS
+.DS_Store
+
+# Misc
+*.swp
+*.swo
+*.tmp
+*.temp
+*.orig
+*.rej
+*.pem
+
+# Local env files
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
